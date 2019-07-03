@@ -2,6 +2,7 @@ package framework.webPages;
 
 import com.google.common.base.Function;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
@@ -77,5 +78,16 @@ public class BasePage extends DateUtil {
 	public String getTimeInHours(int num) {
 
 		return currentDate(num);
+	}
+
+	public static void mouseOver(By locator) {
+		SharedSD.getDriver().manage().window().maximize();
+		WebElement element = SharedSD.getDriver().findElement(locator);
+
+		Actions actions = new Actions(SharedSD.getDriver());
+		actions.moveToElement(element).build().perform();
+	}
+	public static void alertDismiss(By locator) {
+		SharedSD.getDriver().switchTo().alert().dismiss();
 	}
 }
